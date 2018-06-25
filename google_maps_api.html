@@ -17,7 +17,45 @@
 <body>
 <div id="map-canvas"></div>
 
+<script>
 
+    function initMap() {
+        var mapCanvas = document.getElementById('map-canvas');
+        var mapOptions = {
+            zoom: 20,
+            center: {
+                lat: 29.6419,
+                lng: -98.4552
+            }
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions );
+
+        // geocoding
+        // var geo = new google.maps.Geocoder();
+        // geo.geocode({address: "1 UTSA Circle"},function (response, status){
+        //     console.log(status);
+        // });
+
+        var marker = new google.maps.Marker({
+            position :{
+                lat: 29.6419,
+                lng: -98.4552
+            },
+            map: map
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "Panda is Back!"
+        })
+        infowindow.open(map,marker);
+    }
+
+    // marker
+
+
+
+</script>
+<script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIPbNd4ljI6NdSyP5ugk4XoKDzw2VEZM&callback=initMap"async defer></script>
 
 </body>
 </html>
