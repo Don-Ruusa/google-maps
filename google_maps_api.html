@@ -36,25 +36,32 @@
             }
         };
         var map = new google.maps.Map(mapCanvas, mapOptions );
-
-        // geocoding
-        // var geo = new google.maps.Geocoder();
-        // geo.geocode({address: "1 UTSA Circle"},function (response, status){
-        //     console.log(status);
-        // });
+        var image = 'http://cultofthepartyparrot.com/parrots/hd/transparront.gif';
 
         var marker = new google.maps.Marker({
             position :{
                 lat: 29.6419,
-                lng: -98.4552
+                lng: -98.4552,
             },
-            map: map
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: image
         });
 
         var infowindow = new google.maps.InfoWindow({
             content: "Panda is Back!"
         })
         infowindow.open(map,marker);
+
+        marker.addListener('click', toggleBounce);
+
+    }
+    function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
     }
 
     // marker
