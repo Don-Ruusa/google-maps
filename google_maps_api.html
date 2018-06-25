@@ -29,7 +29,7 @@
     function initMap() {
         var mapCanvas = document.getElementById('map-canvas');
         var mapOptions = {
-            zoom: 20,
+            zoom: 10,
             center: {
                 lat: 29.6419,
                 lng: -98.4552
@@ -45,17 +45,63 @@
             },
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: image
+            //icon: image
+        });
+
+        //Object for restaurants
+
+        var restaurants = [
+            {
+                Name: "Panera Bread",
+                favoriteDish: "Bacon Mac & Cheese",
+                position: {
+                    lat: 29.497239,
+                    lng: -98.469627
+                }
+            },
+            {
+                Name: "Iron Cactus",
+                favoriteDish: "Smoked Chicken Quesadilla",
+                position: {
+                    lat: 29.424842,
+                    lng: -98.491100
+                }
+            },
+            {
+                Name: "The Palm San Antonio",
+                favoriteDish: "Lobster Bisque",
+                position: {
+                    lat: 29.426748,
+                    lng: -98.490098
+                }
+            }
+        ];
+        console.table(restaurants); // AMAZING CODE FOR OBJECTS AND ARRAYS!!!!!!
+
+        // For Each Loop to drop Markers
+        restaurants.forEach(function(elements, index){
+            // console.log(restaurants[index]);
+            // console.log('Lat: '+ restaurants[index].position.lat + '\n' + 'Lng: '+ restaurants[index].position.lng);
+            var marker2 = new google.maps.Marker({
+                position :{
+                    lat: restaurants[index].position.lat,
+                    lng: restaurants[index].position.lng
+                },
+                map: map,
+                animation: google.maps.Animation.DROP,
+                //icon: image
+            });
+            marker2.addListener('click', toggleBounce);
         });
 
         var infowindow = new google.maps.InfoWindow({
             content: "Panda is Back!"
-        })
+        });
         infowindow.open(map,marker);
 
         marker.addListener('click', toggleBounce);
 
-
+        // Bounce Animation
     function toggleBounce() {
         if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -63,39 +109,8 @@
             marker.setAnimation(google.maps.Animation.BOUNCE);
         }
     }
+//END OF SCOPE
     }
-
-    var restaurants = [
-        {
-            Name: "Panera Bread",
-            favoriteDish: "Bacon Mac & Cheese",
-            position: {
-                lat: "0",
-                lng: "0"
-            }
-        },
-        {
-            Name: "Iron Cactus",
-            favoriteDish: "Smoked Chicken Quesadilla",
-            position: {
-                lat: "0",
-                lng: "0"
-            }
-        },
-        {
-            Name: "The Palm San Antonio",
-            favoriteDish: "Lobster Bisque",
-            position: {
-                lat: "0",
-                lng: "0"
-            }
-        }
-    ];
-    //var by1rest = [restaurants3.restaurant1, restaurants3.restaurant2, restaurants3.restaurant3];
-    restaurants.forEach(function(elements, index){
-            console.log(restaurants[index]);
-
-    });
 
 
 
