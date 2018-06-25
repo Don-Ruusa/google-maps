@@ -55,7 +55,7 @@
 
         marker.addListener('click', toggleBounce);
 
-    }
+
     function toggleBounce() {
         if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -63,8 +63,23 @@
             marker.setAnimation(google.maps.Animation.BOUNCE);
         }
     }
+    }
 
-    // marker
+    var restaurants3 = {restaurant1: {Name: "Panera Bread",
+        FavoriteDish: "Bacon Mac & Cheese" },
+                        restaurant2: {Name: "Iron Cactus",
+                            FavoriteDish: "Smoked Chicken Quesadilla" },
+                        restaurant3: {Name: "The Palm San Antonio",
+                                    FavoriteDish: "Lobster Bisque"}
+    }
+    var by1rest = [restaurants3.restaurant1, restaurants3.restaurant2, restaurants3.restaurant3];
+    by1rest.forEach(function(restEach){
+
+        for(var i = 0; i<by1rest.length; i++){
+
+            console.log(by1rest[i])
+        }
+    });
 
 
 
