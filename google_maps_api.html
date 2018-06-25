@@ -52,36 +52,37 @@
 
         var restaurants = [
             {
-                Name: "Panera Bread",
-                favoriteDish: "Bacon Mac & Cheese",
+                content: { Name: "Panera Bread",
+                favoriteDish: "Bacon Mac & Cheese"},
                 position: {
                     lat: 29.497239,
                     lng: -98.469627
-                }
+                },
+                content: "Panera Bread - fav is Bacon Mac & Cheese"
             },
             {
-                Name: "Iron Cactus",
-                favoriteDish: "Smoked Chicken Quesadilla",
+                conent: {Name: "Iron Cactus",
+                favoriteDish: "Smoked Chicken Quesadilla"},
                 position: {
                     lat: 29.424842,
                     lng: -98.491100
-                }
+                },
+                content: "Iron Cactus - fav is Smoked Chicken Quesadilla"
             },
             {
-                Name: "The Palm San Antonio",
-                favoriteDish: "Lobster Bisque",
+                content: {Name: "The Palm San Antonio",
+                favoriteDish: "Lobster Bisque"},
                 position: {
                     lat: 29.426748,
                     lng: -98.490098
-                }
+                },
+                content: "The Palm San Antonio - fav is Lobster Bisque"
             }
         ];
         console.table(restaurants); // AMAZING CODE FOR OBJECTS AND ARRAYS!!!!!!
 
         // For Each Loop to drop Markers
         restaurants.forEach(function(elements, index){
-            // console.log(restaurants[index]);
-            // console.log('Lat: '+ restaurants[index].position.lat + '\n' + 'Lng: '+ restaurants[index].position.lng);
             var marker2 = new google.maps.Marker({
                 position :{
                     lat: restaurants[index].position.lat,
@@ -90,8 +91,18 @@
                 map: map,
                 animation: google.maps.Animation.DROP,
                 //icon: image
+
             });
             marker2.addListener('click', toggleBounce);
+
+
+            var infowindow2 = new google.maps.InfoWindow({
+                content: restaurants[index].content,
+                map: map,
+
+            });
+            infowindow2.addListener('click', toggleBounce);
+            infowindow2.open(map,marker2);
         });
 
         var infowindow = new google.maps.InfoWindow({
